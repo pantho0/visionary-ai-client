@@ -1,4 +1,5 @@
 import Banner from "@/components/Banner";
+import Capabilities from "@/components/Capabilities";
 import ShortSummary from "@/components/ShortSummary";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <Banner />
       <ShortSummary />
+      <Capabilities />
     </>
   );
 };
