@@ -1,5 +1,13 @@
+import Banner from "@/components/Banner";
+import ShortSummary from "@/components/ShortSummary";
+
 const Home = () => {
-  return <h1>Visionary ai</h1>;
+  return (
+    <>
+      <Banner />
+      <ShortSummary />
+    </>
+  );
 };
 
 export default Home;

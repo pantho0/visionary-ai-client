@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LightRays from "@/components/LightRays";
+import Navbar from "@/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Navbar />
+        <div className="absolute inset-0 z-[-1] min-h-screen bg-[url('/images/bg-globe.jpg')] opacity-30  bg-cover bg-no-repeat flex items-center justify-center"></div>
         <div className="absolute inset-0 z-[-1] min-h-screen">
           <LightRays
             raysOrigin="top-center"
