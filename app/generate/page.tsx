@@ -1,19 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useGenIMGSDXL } from "@/hooks/genImage.hook";
+import { useGenIMGSDXL, useGetAllGenImages } from "@/hooks/genImage.hook";
+import Image from "next/image";
 import { useState } from "react";
 
 const GenerateImage = () => {
   const [prompt, setPrompt] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const { mutate: genImgSDXL, isPending, isSuccess } = useGenIMGSDXL();
+  const { data: allImages } = useGetAllGenImages();
+
+  console.log(allImages);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!prompt.trim()) return;
 
     setIsGenerating(true);
-    // TODO: Add your image generation API call here
+
     genImgSDXL(prompt);
 
     // Simulate API call
@@ -23,8 +28,9 @@ const GenerateImage = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-200px)] flex items-center justify-center py-10">
-      <div className="glass w-full max-w-3xl p-8 md:p-12 rounded-2xl card-shadow">
+    <div className="min-h-[calc(100vh-200px)] py-10 space-y-12">
+      {/* Prompt Section */}
+      <div className="glass w-full max-w-3xl mx-auto p-8 md:p-12 rounded-2xl card-shadow">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-gradient text-5xl md:text-6xl font-bold mb-4">
@@ -120,6 +126,94 @@ const GenerateImage = () => {
           </ul>
         </div>
       </div>
+
+      {/* Generated Images Gallery */}
+      {allImages?.data && allImages.data.length > 0 && (
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="mb-8">
+            <h2 className="text-gradient text-3xl md:text-4xl font-bold mb-2">
+              Latest Generated Images
+            </h2>
+            <p className="text-light-100">
+              {allImages.data.length}{" "}
+              {allImages.data.length === 1 ? "image" : "images"} generated
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allImages.data
+              .slice()
+              .reverse()
+              .map((image: any) => (
+                <div
+                  key={image._id}
+                  className="glass rounded-xl overflow-hidden card-shadow group cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+                >
+                  <div className="relative aspect-square overflow-hidden">
+                    <Image
+                      src={image.url}
+                      alt="Generated image"
+                      width={512}
+                      height={512}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {/* Overlay on hover */}
+                    <div className="absolute inset-0 bg-linear-to-t from-dark-100 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between">
+                        <a
+                          href={image.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-white hover:text-primary transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                            <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                          </svg>
+                          <span className="text-sm font-medium">View</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
+
+      {/* Empty State */}
+      {(!allImages?.data || allImages.data.length === 0) && (
+        <div className="w-full max-w-3xl mx-auto">
+          <div className="glass p-12 rounded-2xl text-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-16 w-16 mx-auto mb-4 text-light-200"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+            <h3 className="text-light-100 text-xl font-semibold mb-2">
+              No images generated yet
+            </h3>
+            <p className="text-light-200">
+              Start by entering a prompt above and generating your first image!
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

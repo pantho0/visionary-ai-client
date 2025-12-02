@@ -2,7 +2,7 @@ import Aurora from "./Aurora";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-transparent text-gray-300 py-14">
+    <footer className="w-full bg-transparent text-gray-300 py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
       <div className="relative">
         <div className="w-full">
           <Aurora
@@ -13,7 +13,7 @@ const Footer = () => {
           />
         </div>
       </div>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
         {/* Brand */}
         <div>
           <div className="flex items-center gap-3">
@@ -113,7 +113,7 @@ const Footer = () => {
       </div>
 
       {/* bottom line */}
-      <div className="border-t border-white/10 mt-14 pt-6 text-center text-sm text-gray-500">
+      <div className="border-t border-white/10 mt-10 sm:mt-14 pt-6 text-center text-xs sm:text-sm text-gray-500 px-4">
         © {new Date().getFullYear()} Visionary AI — All rights reserved.
       </div>
     </footer>

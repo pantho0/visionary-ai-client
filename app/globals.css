@@ -116,11 +116,11 @@
   }
 
   main {
-    @apply mx-auto container flex flex-col sm:px-10 px-5 py-10;
+    @apply mx-auto container flex flex-col sm:px-10 px-5 py-6 sm:py-10;
   }
 
   h1 {
-    @apply text-gradient text-6xl font-semibold max-sm:text-4xl;
+    @apply text-gradient text-4xl sm:text-5xl md:text-6xl font-semibold;
   }
 
   h3 {
@@ -151,19 +151,23 @@
     @apply glass sticky top-0 z-50;
 
     nav {
-      @apply flex flex-row justify-between mx-auto container sm:px-10 px-5 py-4;
+      @apply flex flex-row justify-between items-center mx-auto container sm:px-10 px-5 py-4;
     }
 
     .logo {
-      @apply flex flex-row items-center gap-2;
+      @apply flex flex-row items-center gap-2 z-50 relative;
 
       p {
-        @apply text-xl font-bold italic max-sm:hidden;
+        @apply text-lg sm:text-xl font-bold italic;
       }
     }
 
     ul {
-      @apply flex flex-row items-center gap-6;
+      @apply flex flex-row items-center gap-4 sm:gap-6;
+
+      a {
+        @apply text-sm sm:text-base transition-colors hover:text-primary;
+      }
     }
   }
 
