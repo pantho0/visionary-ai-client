@@ -1,10 +1,12 @@
 "use client";
 
+import { useGenIMGSDXL } from "@/hooks/genImage.hook";
 import { useState } from "react";
 
 const GenerateImage = () => {
   const [prompt, setPrompt] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
+  const { mutate: genImgSDXL, isPending, isSuccess } = useGenIMGSDXL();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -12,11 +14,11 @@ const GenerateImage = () => {
 
     setIsGenerating(true);
     // TODO: Add your image generation API call here
-    console.log("Generating image with prompt:", prompt);
+    genImgSDXL(prompt);
 
     // Simulate API call
     setTimeout(() => {
-      setIsGenerating(false);
+      setIsGenerating(isPending && !isSuccess);
     }, 2000);
   };
 
