@@ -37,32 +37,57 @@ type ItemDef = {
 
 const DEFAULT_IMAGES: ImageItem[] = [
   {
-    src: "https://images.unsplash.com/photo-1755331039789-7e5680e26e8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "/images/gallery/design-img1.jpg",
     alt: "Abstract art",
   },
   {
-    src: "https://images.unsplash.com/photo-1755569309049-98410b94f66d?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "/images/gallery/design-img2.jpg",
     alt: "Modern sculpture",
   },
   {
-    src: "https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "/images/gallery/design-img3.jpg",
     alt: "Digital artwork",
   },
   {
-    src: "https://images.unsplash.com/photo-1755353985163-c2a0fe5ac3d8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "/images/gallery/design-img4.jpg",
     alt: "Contemporary art",
   },
   {
-    src: "https://images.unsplash.com/photo-1745965976680-d00be7dc0377?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "/images/gallery/design-img5.jpg",
     alt: "Geometric pattern",
   },
   {
-    src: "https://images.unsplash.com/photo-1752588975228-21f44630bb3c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "/images/gallery/design-img6.jpg",
     alt: "Textured surface",
   },
   {
-    src: "https://pbs.twimg.com/media/Gyla7NnXMAAXSo_?format=jpg&name=large",
-    alt: "Social media image",
+    src: "/images/gallery/gallery-img1.jpg",
+    alt: "Textured surface",
+  },
+  {
+    src: "/images/gallery/gallery-img2.jpg",
+    alt: "Textured surface",
+  },
+
+  {
+    src: "/images/gallery/gallery-img4.jpg",
+    alt: "Textured surface",
+  },
+  {
+    src: "/images/gallery/gallery-img6.jpg",
+    alt: "Textured surface",
+  },
+  {
+    src: "/images/gallery/gallery-img7.jpg",
+    alt: "Textured surface",
+  },
+  {
+    src: "/images/gallery/gallery-img8.jpg",
+    alt: "Textured surface",
+  },
+  {
+    src: "/images/gallery/gallery-img9.jpg",
+    alt: "Textured surface",
   },
 ];
 
@@ -535,7 +560,7 @@ export default function DomeGallery({
         pointer-events: none;
         margin: 0;
         transform: none;
-        filter: ${grayscale ? "grayscale(1)" : "none"};
+        // filter: ${grayscale ? "grayscale(1)" : "none"};
       `;
 
       const originalImg = overlay.querySelector("img");
@@ -686,9 +711,7 @@ export default function DomeGallery({
     const img = document.createElement("img");
     img.src = rawSrc;
     img.alt = rawAlt;
-    img.style.cssText = `width:100%; height:100%; object-fit:cover; filter:${
-      grayscale ? "grayscale(1)" : "none"
-    };`;
+    img.style.cssText = `width:100%; height:100%; object-fit:cover; `;
     overlay.appendChild(img);
     viewerRef.current!.appendChild(overlay);
     const tx0 = tileR.left - frameR.left;
@@ -927,12 +950,12 @@ export default function DomeGallery({
                       draggable={false}
                       alt={it.alt}
                       className="w-full h-full object-cover pointer-events-none"
-                      style={{
-                        backfaceVisibility: "hidden",
-                        filter: `var(--image-filter, ${
-                          grayscale ? "grayscale(1)" : "none"
-                        })`,
-                      }}
+                      // style={{
+                      //   backfaceVisibility: "hidden",
+                      //   filter: `var(--image-filter, ${
+                      //     grayscale ? "grayscale(1)" : "none"
+                      //   })`,
+                      // }}
                     />
                   </div>
                 </div>
