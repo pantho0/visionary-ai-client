@@ -22,25 +22,25 @@ const AboutUs = () => {
           {/* Hero Image Placeholder */}
           <div className="relative w-full max-w-5xl h-[300px] sm:h-[400px] md:h-[500px] rounded-2xl overflow-hidden glass mb-16">
             <Image
-              src="/placeholder-about-hero.jpg"
+              src="/images/team.jpg"
               alt="Add a professional team photo or modern office workspace showcasing collaboration and innovation"
               fill
               className="object-cover"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = "none";
-                const parent = target.parentElement;
-                if (parent) {
-                  parent.classList.add(
-                    "flex",
-                    "items-center",
-                    "justify-center",
-                    "bg-dark-100"
-                  );
-                  parent.innerHTML =
-                    '<div class="text-center px-6"><Sparkles class="w-16 h-16 mx-auto mb-4 text-primary" /><p class="text-light-200 text-sm">Add a professional team photo or modern office workspace showcasing collaboration and innovation</p></div>';
-                }
-              }}
+              // onError={(e) => {
+              //   const target = e.target as HTMLImageElement;
+              //   target.style.display = "none";
+              //   const parent = target.parentElement;
+              //   if (parent) {
+              //     parent.classList.add(
+              //       "flex",
+              //       "items-center",
+              //       "justify-center",
+              //       "bg-dark-100"
+              //     );
+              //     parent.innerHTML =
+              //       '<div class="text-center px-6"><Sparkles class="w-16 h-16 mx-auto mb-4 text-primary" /><p class="text-light-200 text-sm">Add a professional team photo or modern office workspace showcasing collaboration and innovation</p></div>';
+              //   }
+              // }}
             />
           </div>
         </div>
@@ -78,13 +78,34 @@ const AboutUs = () => {
             {/* Mission Image Placeholder */}
             <div className="relative h-[350px] sm:h-[400px] rounded-2xl overflow-hidden glass">
               <div className="absolute inset-0 flex items-center justify-center bg-dark-100">
-                <div className="text-center px-6">
+                {/* <div className="text-center px-6">
                   <Sparkles className="w-12 h-12 mx-auto mb-3 text-primary" />
                   <p className="text-light-200 text-sm">
                     Add an inspiring image: creative workspace, digital art
                     creation, or AI visualization
                   </p>
-                </div>
+                </div> */}
+                <Image
+                  src="/images/genimg.png"
+                  alt="Add a professional team photo or modern office workspace showcasing collaboration and innovation"
+                  fill
+                  className="object-cover"
+                  // onError={(e) => {
+                  //   const target = e.target as HTMLImageElement;
+                  //   target.style.display = "none";
+                  //   const parent = target.parentElement;
+                  //   if (parent) {
+                  //     parent.classList.add(
+                  //       "flex",
+                  //       "items-center",
+                  //       "justify-center",
+                  //       "bg-dark-100"
+                  //     );
+                  //     parent.innerHTML =
+                  //       '<div class="text-center px-6"><Sparkles class="w-16 h-16 mx-auto mb-4 text-primary" /><p class="text-light-200 text-sm">Add a professional team photo or modern office workspace showcasing collaboration and innovation</p></div>';
+                  //   }
+                  // }}
+                />
               </div>
             </div>
           </div>
