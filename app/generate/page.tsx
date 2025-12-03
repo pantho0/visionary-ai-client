@@ -39,6 +39,8 @@ const GenerateImage = () => {
               id: toastId,
             }
           ),
+        onError: (e) =>
+          toast.error(e?.message || "Error generating image", { id: toastId }),
       });
     } else {
       genImgFlux1snell(prompt, {
@@ -49,6 +51,8 @@ const GenerateImage = () => {
               id: toastId,
             }
           ),
+        onError: (e) =>
+          toast.error(e?.message || "Error generating image", { id: toastId }),
       });
     }
   };

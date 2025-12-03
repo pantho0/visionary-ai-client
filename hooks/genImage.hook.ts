@@ -4,26 +4,28 @@ import {
   generateImageWithSDXL,
   getAllGenImages,
 } from "@/services/img-gen";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useGenIMGSDXL = () => {
+  const queryClient = useQueryClient();
   return useMutation<any, Error, any>({
     mutationKey: ["Gen_IMG"],
     mutationFn: async (prompt: string) => await generateImageWithSDXL(prompt),
-
-    onError: (error: any) => {
-      console.log(error);
+    onSuccess: () => {
+      // Invalidate the cached invoice list so it refetches
+      queryClient.invalidateQueries({ queryKey: ["Get_All_Gen_Images"] });
     },
   });
 };
 export const useGenIMGFlux1snell = () => {
+  const queryClient = useQueryClient();
   return useMutation<any, Error, any>({
     mutationKey: ["Gen_IMG"],
     mutationFn: async (prompt: string) =>
       await generateImageWithFlux1snell(prompt),
-
-    onError: (error: any) => {
-      console.log(error);
+    onSuccess: () => {
+      // Invalidate the cached invoice list so it refetches
+      queryClient.invalidateQueries({ queryKey: ["Get_All_Gen_Images"] });
     },
   });
 };
