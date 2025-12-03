@@ -2,7 +2,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useGenIMGSDXL, useGetAllGenImages } from "@/hooks/genImage.hook";
+import {
+  useGenIMGFlux1snell,
+  useGenIMGSDXL,
+  useGetAllGenImages,
+} from "@/hooks/genImage.hook";
 import { useState } from "react";
 
 const GenerateImage = () => {
@@ -10,6 +14,11 @@ const GenerateImage = () => {
   const [selectedModel, setSelectedModel] = useState("stable-diffusion-xl");
   const [isGenerating, setIsGenerating] = useState(false);
   const { mutate: genImgSDXL, isPending, isSuccess } = useGenIMGSDXL();
+  const {
+    mutate: genImgFlux1snell,
+    isPending: isPendingFlux1snell,
+    isSuccess: isSuccessFlux1snell,
+  } = useGenIMGFlux1snell();
   const { data: allImages } = useGetAllGenImages();
 
   console.log(allImages);
@@ -20,11 +29,17 @@ const GenerateImage = () => {
 
     setIsGenerating(true);
 
-    genImgSDXL(prompt);
+    if (selectedModel === "stable-diffusion-xl") {
+      genImgSDXL(prompt);
+    } else {
+      genImgFlux1snell(prompt);
+    }
 
     // Simulate API call
     setTimeout(() => {
-      setIsGenerating(isPending && !isSuccess);
+      setIsGenerating(
+        isPending || !isSuccess || isPendingFlux1snell || !isSuccessFlux1snell
+      );
     }, 2000);
   };
 
@@ -60,7 +75,9 @@ const GenerateImage = () => {
               className="w-full px-4 py-3 bg-dark-100 border border-border-dark rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 cursor-pointer"
               disabled={isGenerating}
             >
-              <option value="stable-diffusion-xl">Stable Diffusion XL Base 1.0</option>
+              <option value="stable-diffusion-xl">
+                Stable Diffusion XL Base 1.0
+              </option>
               <option value="flux-schnell">Flux.1 Schnell</option>
             </select>
           </div>
@@ -90,7 +107,7 @@ const GenerateImage = () => {
           <button
             type="submit"
             disabled={!prompt.trim() || isGenerating}
-            className="w-full bg-linear-to-r from-primary to-blue text-dark-100 font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 text-lg"
+            className="w-full cursor-pointer bg-linear-to-r from-primary to-blue text-dark-100 font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 text-lg"
           >
             {isGenerating ? (
               <>

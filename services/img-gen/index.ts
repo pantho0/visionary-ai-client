@@ -5,6 +5,19 @@ import axiosInstance from "@/lib/AxiosInstance";
 
 export const generateImageWithSDXL = async (prompt: string) => {
   try {
+    const res = await axiosInstance.post("/gen-img/sdxl", { prompt });
+    if (!res.data.success) {
+      throw new Error(res.data.message || "Error generating image");
+    }
+    return res.data;
+  } catch (error: any) {
+    throw new Error(
+      error.response?.data?.message || error.message || "Error generating image"
+    );
+  }
+};
+export const generateImageWithFlux1snell = async (prompt: string) => {
+  try {
     const res = await axiosInstance.post("/gen-img/flux1snell", { prompt });
     if (!res.data.success) {
       throw new Error(res.data.message || "Error generating image");
