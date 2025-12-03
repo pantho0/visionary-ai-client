@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, MessageSquare, Clock } from "lucide-react";
+import { toast } from "sonner";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -34,6 +35,8 @@ const ContactUs = () => {
       setFormData({ name: "", email: "", subject: "", message: "" });
       setTimeout(() => setFormStatus("idle"), 3000);
     }, 1500);
+
+    toast.warning("Contact form submission will be implemented soon 🤦‍♂️");
   };
 
   return (

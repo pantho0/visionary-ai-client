@@ -1,16 +1,27 @@
+"use client";
+import { toast } from "sonner";
+
 const LoginPage = () => {
+  const onLoginPress = () => {
+    // TODO: implement login
+    toast.warning("Login functionality to be implemented soon 🥱");
+  };
   return (
-    <div className="flex items-center justify-center min-h-screen -mt-20"> {/* -mt-20 to visually center despite Navbar */}
+    <div className="flex items-center justify-center min-h-screen -mt-20">
+      {" "}
+      {/* -mt-20 to visually center despite Navbar */}
       <div className="flex flex-col items-center p-8 sm:p-12 rounded-lg shadow-lg max-w-md w-full glass text-center">
         <h1 className="text-gradient mb-6 text-3xl sm:text-4xl font-bold">
           Welcome to Visionary<span className="text-primary">AI</span>
         </h1>
         <p className="text-light-100 mb-8 text-lg">
-          Sign in to unleash your creativity and generate stunning AI-powered images.
+          Sign in to unleash your creativity and generate stunning AI-powered
+          images.
         </p>
 
         {/* Google Login Button */}
         <button
+          onClick={onLoginPress}
           className="bg-white text-gray-900 font-semibold py-3 px-6 rounded-full flex items-center justify-center gap-3 hover:bg-gray-100 transition-colors duration-300 transform hover:-translate-y-1 shadow-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
         >
           <svg
