@@ -22,7 +22,7 @@ const Navbar = () => {
         <ul className="hidden md:flex">
           <Link href="/">Home</Link>
           <Link href="/generate">Generate Image</Link>
-          <Link href="/">About</Link>
+          <Link href="/about">About</Link>
           <Link href="/">Contact</Link>
         </ul>
 
@@ -81,7 +81,7 @@ const Navbar = () => {
               Generate Image
             </Link>
             <Link
-              href="/"
+              href="/about"
               onClick={closeMenu}
               className="text-white hover:text-primary transition-colors text-lg font-medium py-2"
             >

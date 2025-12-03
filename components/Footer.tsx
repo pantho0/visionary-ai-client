@@ -1,8 +1,9 @@
 import Aurora from "./Aurora";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-transparent text-gray-300 py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+    <footer className="w-full bg-transparent text-gray-300 py-10 sm:py-14">
       <div className="relative">
         <div className="w-full">
           <Aurora
@@ -67,9 +68,9 @@ const Footer = () => {
           <h3 className="text-white font-semibold mb-4">Company</h3>
           <ul className="space-y-2 text-gray-400 text-sm list-none">
             <li>
-              <a className="hover:text-white cursor-pointer transition">
+              <Link href="/about" className="hover:text-white cursor-pointer transition">
                 About
-              </a>
+              </Link>
             </li>
             <li>
               <a className="hover:text-white cursor-pointer transition">
