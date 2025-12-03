@@ -29,29 +29,35 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
-        <Providers>
-          <Navbar />
-          <div className="absolute inset-0 z-[-1] min-h-screen bg-[url('/images/bg-globe.jpg')] opacity-30  bg-cover bg-no-repeat flex items-center justify-center"></div>
-          <div className="absolute inset-0 z-[-1] min-h-screen">
-            <LightRays
-              raysOrigin="top-center"
-              raysColor="#5dfeca"
-              raysSpeed={0.5}
-              lightSpread={0.9}
-              rayLength={1.2}
-              followMouse={true}
-              mouseInfluence={0.02}
-              noiseAmount={0.1}
-              distortion={0.05}
-              className="custom-rays"
-            />
-          </div>
+        {/* Background Layer */}
+        <div className="fixed inset-0 z-0 min-h-screen bg-[url('/images/bg-globe.jpg')] opacity-30 bg-cover bg-no-repeat bg-center"></div>
+        
+        {/* Light Rays Layer */}
+        <div className="fixed inset-0 z-0 min-h-screen pointer-events-none">
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#5dfeca"
+            raysSpeed={0.5}
+            lightSpread={0.9}
+            rayLength={1.2}
+            followMouse={true}
+            mouseInfluence={0.02}
+            noiseAmount={0.1}
+            distortion={0.05}
+            className="custom-rays"
+          />
+        </div>
 
-          <main>{children}</main>
-          <Footer />
-        </Providers>
+        {/* Content Layer */}
+        <div className="relative z-10">
+          <Providers>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </Providers>
+        </div>
       </body>
     </html>
   );

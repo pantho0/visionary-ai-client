@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useGenIMGSDXL, useGetAllGenImages } from "@/hooks/genImage.hook";
-import Image from "next/image";
 import { useState } from "react";
 
 const GenerateImage = () => {
@@ -150,11 +150,9 @@ const GenerateImage = () => {
                   className="glass rounded-xl overflow-hidden card-shadow group cursor-pointer transition-all duration-300 hover:scale-[1.02]"
                 >
                   <div className="relative aspect-square overflow-hidden">
-                    <Image
+                    <img
                       src={image.url}
                       alt="Generated image"
-                      width={512}
-                      height={512}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                     {/* Overlay on hover */}
