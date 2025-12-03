@@ -19,8 +19,6 @@ const GenerateImage = () => {
     useGenIMGFlux1snell();
   const { data: allImages } = useGetAllGenImages();
 
-  console.log(allImages);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
