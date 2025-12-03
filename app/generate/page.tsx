@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const GenerateImage = () => {
   const [prompt, setPrompt] = useState("");
+  const [selectedModel, setSelectedModel] = useState("stable-diffusion-xl");
   const [isGenerating, setIsGenerating] = useState(false);
   const { mutate: genImgSDXL, isPending, isSuccess } = useGenIMGSDXL();
   const { data: allImages } = useGetAllGenImages();
@@ -43,6 +44,27 @@ const GenerateImage = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Model Selection */}
+          <div className="space-y-3">
+            <label
+              htmlFor="modelSelect"
+              className="block text-light-100 text-sm font-medium"
+            >
+              Select Model
+            </label>
+            <select
+              id="modelSelect"
+              name="modelSelect"
+              value={selectedModel}
+              onChange={(e) => setSelectedModel(e.target.value)}
+              className="w-full px-4 py-3 bg-dark-100 border border-border-dark rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 cursor-pointer"
+              disabled={isGenerating}
+            >
+              <option value="stable-diffusion-xl">Stable Diffusion XL Base 1.0</option>
+              <option value="flux-schnell">Flux.1 Schnell</option>
+            </select>
+          </div>
+
           {/* Textarea */}
           <div className="space-y-3">
             <label
