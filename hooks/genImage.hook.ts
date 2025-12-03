@@ -10,9 +10,7 @@ export const useGenIMGSDXL = () => {
   return useMutation<any, Error, any>({
     mutationKey: ["Gen_IMG"],
     mutationFn: async (prompt: string) => await generateImageWithSDXL(prompt),
-    onSuccess: () => {
-      alert("Image Generated Successfully");
-    },
+
     onError: (error: any) => {
       console.log(error);
     },
@@ -23,9 +21,7 @@ export const useGenIMGFlux1snell = () => {
     mutationKey: ["Gen_IMG"],
     mutationFn: async (prompt: string) =>
       await generateImageWithFlux1snell(prompt),
-    onSuccess: () => {
-      alert("Image Generated Successfully");
-    },
+
     onError: (error: any) => {
       console.log(error);
     },

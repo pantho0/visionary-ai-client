@@ -8,39 +8,49 @@ import {
   useGetAllGenImages,
 } from "@/hooks/genImage.hook";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const GenerateImage = () => {
   const [prompt, setPrompt] = useState("");
   const [selectedModel, setSelectedModel] = useState("stable-diffusion-xl");
   const [isGenerating, setIsGenerating] = useState(false);
-  const { mutate: genImgSDXL, isPending, isSuccess } = useGenIMGSDXL();
-  const {
-    mutate: genImgFlux1snell,
-    isPending: isPendingFlux1snell,
-    isSuccess: isSuccessFlux1snell,
-  } = useGenIMGFlux1snell();
+  const { mutate: genImgSDXL, isPending } = useGenIMGSDXL();
+  const { mutate: genImgFlux1snell, isPending: isPendingFlux1snell } =
+    useGenIMGFlux1snell();
   const { data: allImages } = useGetAllGenImages();
 
   console.log(allImages);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const toastId = toast.loading("Generating your image...");
+
     if (!prompt.trim()) return;
 
     setIsGenerating(true);
 
     if (selectedModel === "stable-diffusion-xl") {
-      genImgSDXL(prompt);
+      genImgSDXL(prompt, {
+        onSuccess: () =>
+          toast.success(
+            "Image generated successfully!. Check below to see it or refresh the page",
+            {
+              id: toastId,
+            }
+          ),
+      });
     } else {
-      genImgFlux1snell(prompt);
+      genImgFlux1snell(prompt, {
+        onSuccess: () =>
+          toast.success(
+            "Image generated successfully!. Check below to see it or refresh the page",
+            {
+              id: toastId,
+            }
+          ),
+      });
     }
-
-    // Simulate API call
-    setTimeout(() => {
-      setIsGenerating(
-        isPending || !isSuccess || isPendingFlux1snell || !isSuccessFlux1snell
-      );
-    }, 2000);
   };
 
   return (
@@ -98,7 +108,7 @@ const GenerateImage = () => {
               placeholder="A serene landscape with mountains at sunset, vibrant colors, photorealistic..."
               rows={6}
               className="w-full px-4 py-3 bg-dark-100 border border-border-dark rounded-lg text-foreground placeholder:text-light-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none transition-all duration-200"
-              disabled={isGenerating}
+              disabled={isPending || isPendingFlux1snell}
             />
             <p className="text-light-200 text-xs">{prompt.length} characters</p>
           </div>
@@ -106,10 +116,10 @@ const GenerateImage = () => {
           {/* Generate Button */}
           <button
             type="submit"
-            disabled={!prompt.trim() || isGenerating}
+            disabled={!prompt.trim() || isPending || isPendingFlux1snell}
             className="w-full cursor-pointer bg-linear-to-r from-primary to-blue text-dark-100 font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 text-lg"
           >
-            {isGenerating ? (
+            {isPending || isPendingFlux1snell ? (
               <>
                 <svg
                   className="animate-spin h-5 w-5"
