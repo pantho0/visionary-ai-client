@@ -24,31 +24,33 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <header>
-      <nav>
-        <Link href="/" className="logo" onClick={closeMenu}>
-          <p>
-            Visionary<span className="text-primary">AI</span>
-          </p>
-        </Link>
+    <>
+      <header>
+        <nav>
+          <Link href="/" className="logo" onClick={closeMenu}>
+            <p>
+              Visionary<span className="text-primary">AI</span>
+            </p>
+          </Link>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex">
-          <Link href="/">Home</Link>
-          <Link href="/generate">Generate Image</Link>
-          <Link href="/about">About</Link>
-          <Link href="/contact">Contact</Link>
-        </ul>
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex">
+            <Link href="/">Home</Link>
+            <Link href="/generate">Generate Image</Link>
+            <Link href="/about">About</Link>
+            <Link href="/contact">Contact</Link>
+          </ul>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={toggleMenu}
-          className="md:hidden flex flex-col items-center justify-center w-10 h-10 text-white focus:outline-none z-50 relative"
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? "" : <Menu size={24} />}
-        </button>
-      </nav>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden flex flex-col items-center justify-center w-10 h-10 text-white focus:outline-none z-[60] relative"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? "" : <Menu size={24} />}
+          </button>
+        </nav>
+      </header>
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
@@ -60,15 +62,29 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed top-0 right-0 h-full w-[280px] glass z-50">
-          <button
-            onClick={closeMenu}
-            className="absolute top-4 right-4 text-white hover:text-primary focus:outline-none"
-            aria-label="Close menu"
-          >
-            <X size={24} />
-          </button>
-          <div className="flex flex-col h-full pt-20 px-6">
+        <div className="md:hidden fixed top-0 right-0 h-full w-[280px] glass z-50 overflow-y-auto">
+          {/* Sticky Header inside Mobile Menu */}
+          <div className="sticky top-0 glass z-10 px-6 py-4 flex justify-end items-center">
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className="flex items-center gap-2"
+            >
+              {/* <p className="text-lg font-bold italic">
+                Visionary<span className="text-primary">AI</span>
+              </p> */}
+            </Link>
+            <button
+              onClick={closeMenu}
+              className="text-white hover:text-primary focus:outline-none transition-colors"
+              aria-label="Close menu"
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          {/* Menu Content */}
+          <div className="flex flex-col px-6 pt-6">
             <ul className="flex flex-col gap-6">
               <Link
                 href="/"
@@ -102,7 +118,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
 
