@@ -1,19 +1,8 @@
-import Aurora from "./Aurora";
 import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-transparent text-gray-300 py-10 sm:py-14">
-      <div className="relative">
-        <div className="w-full">
-          <Aurora
-            colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-            blend={0.5}
-            amplitude={1.0}
-            speed={0.5}
-          />
-        </div>
-      </div>
+    <footer className="w-full border-t border-white/10 bg-transparent text-gray-300 py-10 sm:py-14 relative">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
         {/* Brand */}
         <div>
@@ -68,7 +57,10 @@ const Footer = () => {
           <h3 className="text-white font-semibold mb-4">Company</h3>
           <ul className="space-y-2 text-gray-400 text-sm list-none">
             <li>
-              <Link href="/about" className="hover:text-white cursor-pointer transition">
+              <Link
+                href="/about"
+                className="hover:text-white cursor-pointer transition"
+              >
                 About
               </Link>
             </li>

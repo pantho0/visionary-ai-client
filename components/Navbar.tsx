@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { X } from "lucide-react";
+import { Menu } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,21 +34,7 @@ const Navbar = () => {
           className="md:hidden flex flex-col items-center justify-center w-10 h-10 text-white focus:outline-none z-50 relative"
           aria-label="Toggle menu"
         >
-          <span
-            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
-              isMenuOpen ? "rotate-45 translate-y-1.5" : ""
-            }`}
-          ></span>
-          <span
-            className={`block w-6 h-0.5 bg-white transition-all duration-300 my-1 ${
-              isMenuOpen ? "opacity-0" : ""
-            }`}
-          ></span>
-          <span
-            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
-              isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
-            }`}
-          ></span>
+          {isMenuOpen ? "" : <Menu size={24} />}
         </button>
       </nav>
 
@@ -64,8 +52,15 @@ const Navbar = () => {
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
+        <button
+          onClick={closeMenu}
+          className="absolute top-4 right-4 text-white hover:text-primary focus:outline-none"
+          aria-label="Close menu"
+        >
+          <X size={24} />
+        </button>
         <div className="flex flex-col h-full pt-20 px-6">
-          <ul className="flex flex-col gap-6">
+          <ul className="flex flex-col gap-6 bg-black">
             <Link
               href="/"
               onClick={closeMenu}
