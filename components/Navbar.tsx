@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { X } from "lucide-react";
+import { X, Menu } from "lucide-react";
 import { Menu } from "lucide-react";
 
 const Navbar = () => {
@@ -39,6 +39,7 @@ const Navbar = () => {
             <Link href="/generate">Generate Image</Link>
             <Link href="/about">About</Link>
             <Link href="/contact">Contact</Link>
+            <Link href="/login">Login</Link>
           </ul>
 
           {/* Mobile Menu Button */}
@@ -113,6 +114,13 @@ const Navbar = () => {
                 className="text-white hover:text-primary transition-colors text-lg font-medium py-2"
               >
                 Contact
+              </Link>
+              <Link
+                href="/login"
+                onClick={closeMenu}
+                className="text-white hover:text-primary transition-colors text-lg font-medium py-2"
+              >
+                Login
               </Link>
             </ul>
           </div>
